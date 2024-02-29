@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:bmi_calculator/constants.dart';
 import 'package:bmi_calculator/components/reusable_card.dart';
@@ -30,11 +29,11 @@ class _InputPageState extends State<InputPage> {
       appBar: AppBar(
         title: Text('BMI CALCULATOR'),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Expanded(
-            child: Row(
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Row(
               children: <Widget>[
                 Expanded(
                   child: ReusableCard(
@@ -70,9 +69,7 @@ class _InputPageState extends State<InputPage> {
                 ),
               ],
             ),
-          ),
-          Expanded(
-            child: ReusableCard(
+            ReusableCard(
               colour: kActiveCardColour,
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -121,9 +118,7 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
-          ),
-          Expanded(
-            child: Row(
+            Row(
               children: <Widget>[
                 Expanded(
                   child: ReusableCard(
@@ -207,25 +202,25 @@ class _InputPageState extends State<InputPage> {
                 ),
               ],
             ),
-          ),
-          BottomButton(
-            buttonTitle: 'CALCULATE',
-            onTap: () {
-              CalculatorBrain calculator =
-                  CalculatorBrain(height: height, weight: weight);
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ResultsPage(
-                    bmiResult: calculator.calculateBMI(),
-                    resultText: calculator.getResult(),
-                    interpretation: calculator.getInterpretation(),
+            BottomButton(
+              buttonTitle: 'CALCULATE',
+              onTap: () {
+                CalculatorBrain calculator =
+                    CalculatorBrain(height: height, weight: weight);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ResultsPage(
+                      bmiResult: calculator.calculateBMI(),
+                      resultText: calculator.getResult(),
+                      interpretation: calculator.getInterpretation(),
+                    ),
                   ),
-                ),
-              );
-            },
-          ),
-        ],
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
